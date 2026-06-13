@@ -1,0 +1,162 @@
+.table-container {
+  background: white;
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+  overflow: auto;
+  border: 1px solid rgba(23, 33, 43, 0.06);
+}
+
+.user-table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
+}
+
+.mat-mdc-header-row,
+.mat-header-row {
+  background: #fcfbfb;
+  height: 44px;
+}
+
+.mat-mdc-header-cell,
+.mat-mdc-cell,
+.mat-header-cell,
+.mat-cell {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(23, 33, 43, 0.08);
+}
+
+.mat-mdc-header-cell,
+.mat-header-cell {
+  color: var(--tc-slate);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 0.76rem;
+  background: #fcfbfb;
+  white-space: nowrap;
+}
+
+.mat-mdc-row,
+.table-row {
+  height: 52px;
+  transition: background 0.16s ease;
+}
+
+.mat-mdc-cell,
+.mat-cell {
+  color: var(--tc-slate);
+  font-size: 0.9rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fde7e9;
+  color: var(--tc-red);
+  font-weight: 700;
+}
+
+.user-details {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.username {
+  color: var(--tc-grey);
+  font-size: 0.92rem;
+}
+
+.role-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.role-badge {
+  background: #fff2f3;
+  color: var(--tc-red);
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.76rem;
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.status-badge.active {
+  background: #d1f6e8;
+  color: #107d4b;
+}
+
+.email-link {
+  color: var(--tc-red);
+  text-decoration: none;
+}
+
+.table-header {
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.mat-mdc-row:hover,
+.table-row:hover {
+  background: rgba(253, 231, 233, 0.6);
+}
+
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: var(--tc-grey);
+}
+
+.mat-mdc-paginator,
+.mat-paginator {
+  background: #ffffff;
+  padding: 0.45rem 0.75rem;
+  border-top: 1px solid rgba(23, 33, 43, 0.08);
+}
+
+:host ::ng-deep .mat-mdc-paginator-container {
+  min-height: 48px;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+:host ::ng-deep .mat-mdc-paginator-page-size {
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .table-container {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-table { min-width: 820px; }
+}

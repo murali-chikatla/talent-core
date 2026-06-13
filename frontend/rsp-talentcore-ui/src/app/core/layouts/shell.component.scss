@@ -1,0 +1,16 @@
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: #f6f6f8;
+}
+
+.app-main {
+  flex: 1;
+  padding: 0;
+}
+
+.app-footer {
+  padding: 1rem 0;
+  background: transparent;
+}

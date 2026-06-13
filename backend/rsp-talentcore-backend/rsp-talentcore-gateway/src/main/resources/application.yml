@@ -1,0 +1,40 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: rsp-talentcore-gateway
+
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: auth-service
+              uri: lb://RSP-TALENTCORE-AUTH-SERVICE
+              predicates:
+                - Path=/api/users/**
+
+            - id: core-service
+              uri: lb://RSP-TALENTCORE-CORE-SERVICE
+              predicates:
+                - Path=/api/resources/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,mappings
+
+logging:
+  level:
+    root: INFO
+    org.springframework: WARN

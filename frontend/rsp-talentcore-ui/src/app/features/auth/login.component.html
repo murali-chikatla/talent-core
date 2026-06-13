@@ -1,0 +1,81 @@
+<div class="login-page" role="main">
+  <div class="bg-decor" aria-hidden="true"></div>
+  <div class="login-panel">
+    <section class="login-card" role="form" aria-labelledby="login-title">
+      <div class="login-page" role="main">
+        <div class="bg-decor" aria-hidden="true"></div>
+        <div class="login-panel">
+          <section class="login-card" role="form" aria-labelledby="login-title">
+            <div class="login-card__hero">
+              <div class="brand-icon" aria-hidden="true">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="4" width="16" height="16" rx="8" fill="white" opacity="0.12"/>
+                  <path d="M7 12h10M7 8h10M7 16h6" stroke="#ffebee" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <div class="hero-copy">
+                <span class="eyebrow">Enterprise access</span>
+                <h1 id="login-title">TalentCore</h1>
+                <p class="subtitle">Sign in to your enterprise workspace</p>
+              </div>
+            </div>
+
+            <form class="login-card__form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" type="email" formControlName="email" autocomplete="email" required aria-required="true" autofocus />
+                <div class="error" *ngIf="f['email'].touched || f['email'].dirty">
+                  <div *ngIf="f['email'].errors?.['required']" role="alert">This field is required.</div>
+                  <div *ngIf="f['email'].errors?.['email']" role="alert">Enter a valid email address.</div>
+                  <div *ngIf="f['email'].errors?.['maxlength']" role="alert">Maximum 254 characters allowed.</div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="password">Password</label>
+                <div class="password-wrap">
+                  <input [type]="showPassword() ? 'text' : 'password'" id="password" formControlName="password" autocomplete="current-password" required aria-required="true" />
+                  <button
+                    type="button"
+                    class="password-toggle"
+                    (click)="togglePassword()"
+                    [attr.aria-pressed]="showPassword()"
+                    [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <ng-container *ngIf="!showPassword()">
+                        <path d="M12 5c-5 0-8 5-8 7s3 7 8 7 8-5 8-7-3-7-8-7Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <path d="M12 9.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill="currentColor"/>
+                      </ng-container>
+                      <ng-container *ngIf="showPassword()">
+                        <path d="M17.5 6.5L6.5 17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M9.8 9.8a3 3 0 0 1 4.4 4.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </ng-container>
+                    </svg>
+                  </button>
+                </div>
+                <div class="error" *ngIf="f['password'].touched || f['password'].dirty">
+                  <div *ngIf="f['password'].errors?.['required']" role="alert">This field is required.</div>
+                  <div *ngIf="f['password'].errors?.['minlength']" role="alert">Minimum 8 characters required.</div>
+                  <div *ngIf="f['password'].errors?.['maxlength']" role="alert">Maximum 128 characters allowed.</div>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button class="submit-button" type="submit" [disabled]="loading() || form.invalid" [attr.aria-busy]="loading()">
+                  <span *ngIf="!loading()">Sign in</span>
+                  <span *ngIf="loading()" class="spinner" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <div class="form-error" *ngIf="form.errors?.['auth']" role="alert" aria-live="assertive">
+                Invalid credentials — please check your email and password.
+              </div>
+            </form>
+
+            <div class="login-card__footer">
+              <span>© TalentCore Enterprise Platform</span>
+            </div>
+          </section>
+        </div>
+      </div>

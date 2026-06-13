@@ -1,0 +1,8 @@
+@use 'sass:map';
+@import './_variables.scss';
+
+body {
+  background: var(--theme-bg);
+  color: #212529;
+  font-family: Inter, Roboto, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial;
+}

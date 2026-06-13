@@ -1,0 +1,40 @@
+<section class="users-search">
+  <div class="results-panel">
+    <div class="results-header">
+      <div>
+        <h1>User Management</h1>
+        <p>Use backend filters to find the right users across the enterprise.</p>
+      </div>
+      <div class="page-controls">
+        <button mat-raised-button color="primary" class="create-button" type="button" (click)="openCreateUser()">
+          Create User
+        </button>
+      </div>
+    </div>
+
+    <div class="filter-area">
+      <app-user-filters (search)="onFiltersSearch($event)" (reset)="onFiltersReset()"></app-user-filters>
+    </div>
+
+    <div *ngIf="error()" class="error-state">
+      <span class="material-symbols-outlined">error_outline</span>
+      <div>
+        <h3>Search failed</h3>
+        <p>{{ error() }}</p>
+      </div>
+    </div>
+
+    <div *ngIf="loading() && !error()" class="loading-state">
+      <mat-progress-spinner mode="indeterminate" diameter="48"></mat-progress-spinner>
+      <span>Loading users...</span>
+    </div>
+
+    <app-user-table
+      *ngIf="!error()"
+      [data]="data"
+      [isLoading]="loading()"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)">
+    </app-user-table>
+  </div>
+</section>

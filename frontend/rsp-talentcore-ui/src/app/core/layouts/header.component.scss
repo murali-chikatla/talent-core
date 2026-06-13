@@ -1,0 +1,126 @@
+.tc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 1.5rem;
+  background: white;
+  border-bottom: 1px solid rgba(23, 33, 43, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.brand-panel {
+  display: flex;
+  align-items: center;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #dd2f45 0%, #b61324 100%);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 1.3rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.brand-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tc-slate);
+}
+
+.brand-tag {
+  font-size: 0.78rem;
+  color: var(--tc-grey);
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.icon-button {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 17px;
+  height: 17px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #c9202f;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.profile-button {
+  border: 1px solid rgba(23, 33, 43, 0.08);
+  border-radius: 999px;
+  padding: 0.2rem 0.75rem;
+}
+
+.profile-avatar {
+  width: 30px;
+  height: 30px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fde7e9;
+  color: #c9202f;
+  font-weight: 700;
+  margin-right: 0.55rem;
+}
+
+.profile-name {
+  font-weight: 600;
+  color: var(--tc-slate);
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrow-icon {
+  margin-left: 0.35rem;
+}
+
+@media (max-width: 900px) {
+  .tc-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .toolbar-actions {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

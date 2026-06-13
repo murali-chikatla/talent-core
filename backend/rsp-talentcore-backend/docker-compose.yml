@@ -1,0 +1,58 @@
+services:
+
+
+  discovery:
+    build:
+      context: ./rsp-talentcore-discovery
+    container_name: talentcore-discovery
+    ports:
+      - "8761:8761"
+
+  auth-service:
+    build:
+      context: ./rsp-talentcore-auth-service
+    container_name: talentcore-auth
+    depends_on:
+      - discovery
+    environment:
+      SERVER_PORT: 8081
+      EUREKA_SERVER_URL: http://discovery:8761/eureka/
+      DB_URL: jdbc:mysql://host.docker.internal:3306/talentcore_auth
+      DB_USERNAME: talentcore_user
+      DB_PASSWORD: root
+      JWT_SECRET: TalentCoreSecretKeyForJWTAuthenticationAndAuthorization123456
+    ports:
+      - "8081:8081"
+
+  core-service:
+    build:
+      context: ./rsp-talentcore-core-service
+    container_name: talentcore-core
+    depends_on:
+      - discovery
+    environment:
+      SERVER_PORT: 8082
+      EUREKA_SERVER_URL: http://discovery:8761/eureka/
+      DB_URL: jdbc:mysql://host.docker.internal:3306/talentcore_core
+      DB_USERNAME: talentcore_user
+      DB_PASSWORD: root
+      JWT_SECRET: TalentCoreSecretKeyForJWTAuthenticationAndAuthorization123456
+    ports:
+      - "8082:8082"
+
+  gateway:
+    build:
+      context: ./rsp-talentcore-gateway
+    container_name: talentcore-gateway
+    depends_on:
+      - discovery
+      - auth-service
+      - core-service
+    environment:
+      SERVER_PORT: 8080
+      EUREKA_SERVER_URL: http://discovery:8761/eureka/
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:
