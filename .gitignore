@@ -4,6 +4,8 @@ dist/
 .idea/
 .vscode/
 .angular/
+logs/
 *.log
+*.log.gz
 *.class
 *.jar

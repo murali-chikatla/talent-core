@@ -12,6 +12,16 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
+app.get('/app-config.json', (_req, res) => {
+  res
+    .type('application/json')
+    .set('Cache-Control', 'no-store')
+    .send({
+      apiBase: process.env['API_BASE_URL'] || '/api',
+      environment: process.env['APP_ENV'] || 'production',
+    });
+});
+
 /**
  * Example Express Rest API endpoints can be defined here.
  * Uncomment and define endpoints as necessary.
@@ -49,10 +59,10 @@ app.use((req, res, next) => {
 
 /**
  * Start the server if this module is the main entry point, or it is ran via PM2.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
+ * The server listens on the port defined by the `PORT` environment variable, or defaults to 4200.
  */
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] || 4200;
   app.listen(port, (error) => {
     if (error) {
       throw error;
