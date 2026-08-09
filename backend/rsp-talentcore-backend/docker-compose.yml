@@ -55,5 +55,15 @@ services:
     ports:
       - "8080:8080"
 
+  talentcore-ui:
+    container_name: talentcore-ui
+    build:
+      context: ../../frontend/rsp-talentcore-ui
+    depends_on:
+      - gateway
+    environment:
+      API_BASE_URL: http://gateway:8080
+    ports:
+      - "4200:80"
 volumes:
   mysql_data:
